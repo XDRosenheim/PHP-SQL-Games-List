@@ -19,6 +19,15 @@
     include_once("headerItems.php");
   ?>
 <body>
+<div class="wrapper">
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Heads</h1>
+      <p>Tails</p>
+      <a href="https://github.com/XDRosenheim/xdrosenheim.github.io">As seen on Github! <i class="fa fa-github"></i></a>
+    </div>
+  </div>
+
   <?php
     for ( $i = 0; $i < $gamesListLength; $i++ ) {
       if ( $gamesList[$i][3] ) {
@@ -26,9 +35,8 @@
       } else {
         $wikiString = "Fanmade wiki";
       };
-      print "<div class='btn-group'><button type='button' class='btn btn-primary'>" . $gamesList[$i][0] . "</button>";
-      print "<button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></button>";
-      //print "<a class='dropdown-toggle' data-toggle='dropdown'>" . $gamesList[$i][0] . "<i class='fa fa-arrow-down'></i></a>";
+      print "<div class='btn-group'><a class='btn btn-default'>" . $gamesList[$i][0] . "</a>";
+      print "<a class='btn btn-default dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></a>";
       print "<ul class='dropdown-menu' role='menu'>";
       print "<li class='dropdown-header'>" . $wikiString . "</li>";
       print "<li><a href='" . $gamesList[$i][4] . "'>Wiki</a></li>";
@@ -54,4 +62,5 @@
       print "</ul></li></div>";
     }
   ?>
+</div>
 </body>
