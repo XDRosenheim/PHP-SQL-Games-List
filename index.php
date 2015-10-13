@@ -24,10 +24,9 @@
     <div class="container">
       <h1>Heads</h1>
       <p>Tails</p>
-      <a href="https://github.com/XDRosenheim/xdrosenheim.github.io">As seen on Github! <i class="fa fa-github"></i></a>
+      <a href="https://github.com/XDRosenheim/xdrosenheim.github.io">As seen on Github! <i class="fa fa-lg fa-github"></i></a>
     </div>
   </div>
-
   <?php
     for ( $i = 0; $i < $gamesListLength; $i++ ) {
       if ( $gamesList[$i][3] ) {
