@@ -9,7 +9,7 @@
     array("Cities: Skylines", 255710, true, true, "http://www.skylineswiki.com/Cities:_Skylines_Wiki" ,"citiesskylines"),
     array("ARK: Survival Evolved", 346110, true, true, "http://ark.gamepedia.com/ARK:_Survival_Evolved_Wiki", "playark")
   ];
-
+  sort($gamesList);
   $gamesListLength = count($gamesList);
 ?>
 
@@ -27,39 +27,42 @@
       <a href="https://github.com/XDRosenheim/xdrosenheim.github.io">As seen on Github! <i class="fa fa-lg fa-github"></i></a>
     </div>
   </div>
-  <?php
-    for ( $i = 0; $i < $gamesListLength; $i++ ) {
-      if ( $gamesList[$i][3] ) {
-        $wikiString = "Official wiki";
-      } else {
-        $wikiString = "Fanmade wiki";
-      };
-      print "<div class='btn-group'><a class='btn btn-default'>" . $gamesList[$i][0] . "</a>";
-      print "<a class='btn btn-default dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></a>";
-      print "<ul class='dropdown-menu' role='menu'>";
-      print "<li class='dropdown-header'>" . $wikiString . "</li>";
-      print "<li><a href='" . $gamesList[$i][4] . "'>Wiki</a></li>";
-      print "<li class='divider'></li><li class='dropdown-header'>Steam links</li>";
-      print "<li><a href='http://store.steampowered.com/app/" . $gamesList[$i][1] . "'>Store</a></li>";
-      print "<li><a href='http://steamcommunity.com/app/" . $gamesList[$i][1] . "'>Community</a></li>";
-      print "<li><a href='http://steamcommunity.com/app/" . $gamesList[$i][1] . "/screenshots'>Screenshots</a></li>";
-      if ( $gamesList[$i][2]) {
-        print "<li><a href='https://steamcommunity.com/workshop/browse?appid=" . $gamesList[$i][1] . "'>Workshop</a></li>";
-      } else {
-        print "<li class='disabled'><a>Workshop</a></li>";
+  <div class="row">
+    <?php
+      for ( $i = 0; $i < $gamesListLength; $i++ ) {
+        if ( $gamesList[$i][3] ) {
+          $wikiString = "Official wiki";
+        } else {
+          $wikiString = "Fanmade wiki";
+        };
+        print "<div class='col-lg-3'>";
+        print "<div class='btn-group'><a class='btn btn-default'>" . $gamesList[$i][0] . "</a>";
+        print "<a class='btn btn-default dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></a>";
+        print "<ul class='dropdown-menu' role='menu'>";
+        print "<li class='dropdown-header'>" . $wikiString . "</li>";
+        print "<li><a href='" . $gamesList[$i][4] . "'>Wiki</a></li>";
+        print "<li class='divider'></li><li class='dropdown-header'>Steam links</li>";
+        print "<li><a href='http://store.steampowered.com/app/" . $gamesList[$i][1] . "'>Store</a></li>";
+        print "<li><a href='http://steamcommunity.com/app/" . $gamesList[$i][1] . "'>Community</a></li>";
+        print "<li><a href='http://steamcommunity.com/app/" . $gamesList[$i][1] . "/screenshots'>Screenshots</a></li>";
+        if ( $gamesList[$i][2]) {
+          print "<li><a href='https://steamcommunity.com/workshop/browse?appid=" . $gamesList[$i][1] . "'>Workshop</a></li>";
+        } else {
+          print "<li class='disabled'><a>Workshop</a></li>";
+        }
+        print "<li><a href='http://steamcommunity.com/app" . $gamesList[$i][1] . "/guides'>Guides</a></li>";
+        print "<li><a href='http://steamcommunity.com/app" . $gamesList[$i][1] . "/allnews'>News</a></li>";
+        print "<li><a href='http://steamcommunity.com/app" . $gamesList[$i][1] . "/discussions'>Discussions</a></li>";
+        print "<li class='divider'></li>";
+        print "<li class='dropdown-header'>Reddits</li>";
+        if ( $gamesList[$i][5] != "") {
+          print "<li><a href='https://reddit.com/r/" . $gamesList[$i][5] . "/'>Subreddit</a></li>";
+        } else {
+          print "<li class='disabled'><a>Subreddit</a></li>";
+        }
+        print "</ul></li></div></div>";
       }
-      print "<li><a href='http://steamcommunity.com/app" . $gamesList[$i][1] . "/guides'>Guides</a></li>";
-      print "<li><a href='http://steamcommunity.com/app" . $gamesList[$i][1] . "/allnews'>News</a></li>";
-      print "<li><a href='http://steamcommunity.com/app" . $gamesList[$i][1] . "/discussions'>Discussions</a></li>";
-      print "<li class='divider'></li>";
-      print "<li class='dropdown-header'>Reddits</li>";
-      if ( $gamesList[$i][2] != "") {
-        print "<li><a href='https://reddit.com/r/" . $gamesList[$i][5] . "/'>Subreddit</a></li>";
-      } else {
-        print "<li class='disabled'><a>Subreddit</a></li>";
-      }
-      print "</ul></li></div>";
-    }
-  ?>
+    ?>
+  </div>
 </div>
 </body>
