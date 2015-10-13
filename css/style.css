@@ -1,4 +1,7 @@
 /* BOOTSTRAP OVERRIDES */
-.btn-group {
-    margin: 2px;
+.row {
+    margin-bottom: 2px;
+}
+.row:last-child {
+    margin-bottom: 0px;
 }

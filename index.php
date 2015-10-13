@@ -1,4 +1,5 @@
 <?php
+  // 0,      1,        2,         3,              4,           5
   // "NAME", STEAM ID, Workshop?, official wiki?, "wiki-link", sub-reddit (If non, leave blank)
 
   $gamesList = [
@@ -7,8 +8,9 @@
     array("Warframe", 230410, false, false, "https://warframe.wikia.com/wiki/WARFRAME_Wiki", "Warframe"),
     array("7 Days to Die", 251570, false, true, "https://7daystodie.gamepedia.com/7_Days_to_Die_Wiki", "7daystodie"),
     array("Space Engineers", 244850, true, true, "https://www.spaceengineerswiki.com/Main_Page", "spaceengineers"),
-      array("Cities: Skylines", 255710, true, true, "http://www.skylineswiki.com/Cities:_Skylines_Wiki", "citiesskylines"),
-    array("ARK: Survival Evolved", 346110, true, true, "https://ark.gamepedia.com/ARK:_Survival_Evolved_Wiki", "playark")
+    array("Cities: Skylines", 255710, true, true, "http://www.skylineswiki.com/Cities:_Skylines_Wiki", "citiesskylines"),
+    array("ARK: Survival Evolved", 346110, true, true, "https://ark.gamepedia.com/ARK:_Survival_Evolved_Wiki", "playark"),
+    array("TrackMania&#178; Stadium", 232910, true, true, "", "TrackMania")
   ];
   sort($gamesList);
   $gamesListLength = count($gamesList);
@@ -36,17 +38,25 @@
           print "<div class='row'>";
           $newRow = false;
         }
-        if ( $gamesList[$i][3] ) {
+
+        print "<div class='col-md-3'>";
+        print "<div class='btn-group btn-block'><button class='btn btn-default col-sm-11 dropdown-toggle' data-toggle='dropdown'>" . $gamesList[$i][0] . "</button>";
+        //print "<button class='btn btn-default col-sm-1 ><span class='caret'></span></button>";
+        print "<ul class='dropdown-menu btn-block' role='menu'>";
+
+
+        if ( $gamesList[$i][3] == true ) {
           $wikiString = "Official wiki";
+        }
+        elseif ( $gamesList[$i][4] == "" ) {
+
         } else {
           $wikiString = "Fanmade wiki";
         };
-        print "<div class='col-md-3'>";
-        print "<div class='btn-group btn-block'><button class='btn btn-default col-sm-11'>" . $gamesList[$i][0] . "</button>";
-        print "<button class='btn btn-default col-sm-1 dropdown-toggle' data-toggle='dropdown'><span class='caret'></span></button>";
-        print "<ul class='dropdown-menu btn-block' role='menu'>";
-        print "<li class='dropdown-header'>" . $wikiString . "</li>";
-        print "<li><a href='" . $gamesList[$i][4] . "'>Wiki</a></li>";
+        print "<li class='dropdown-header'>Wiki</li>";
+        print "<li><a href='" . $gamesList[$i][4] . "'>" . $wikiString . "</a></li>";
+
+
         print "<li class='divider'></li><li class='dropdown-header'>Steam links</li>";
         print "<li><a href='https://store.steampowered.com/app/" . $gamesList[$i][1] . "'>Store</a></li>";
         print "<li><a href='https://steamcommunity.com/app/" . $gamesList[$i][1] . "'>Community</a></li>";
