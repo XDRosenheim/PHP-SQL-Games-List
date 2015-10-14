@@ -1,10 +1,10 @@
 <?php
   require_once("sql/databaseStrings.php");
-  /*include("includeMe/gameslist.php");
+  include("includeMe/gameslist.php");
   sort($gamesList);
   $gamesListLength = count($gamesList);
-  */
-  $conn = new mysqli($server, $usernome, $asdfmovie, $databuseName);
+
+  $conn = new mysqli($servername, $username, $password, $databasename);
 
 ?>
 
