@@ -1,13 +1,35 @@
 <?php
-  require_once("sql/databaseStrings.php");
   include("includeMe/gameslist.php");
   sort($gamesList);
   $gamesListLength = count($gamesList);
 
-  $conn = new mysqli($servername, $username, $password, $databasename);
+  //require_once("sql/databaseStrings.php");
+  //$conn = new mysqli($servername, $username, $password, $databasename);
+  $servername = "127.0.0.1";
+  $username = "root";
+  $password = "28998160";
+  $dbname = "php_site";
 
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  // Check connection
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
+  $sql = "SELECT * FROM gamesList";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    }
+  } else {
+    echo "0 results";
+  }
+  $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html>
   <?php include_once("head/headTags.php"); // Get themes 'n' shit ?>
@@ -30,7 +52,7 @@
         }
 
         print "<div class='col-md-3'>";
-        print "<div class='btn-group btn-block'><button class='btn btn-default col-sm-11 dropdown-toggle' data-toggle='dropdown'>" . $gamesList[$i][0] . "</button>";
+        print "<div class='btn-group btn-block'><button class='btn btn-default col-sm-11 dropdown-toggle' data-toggle='dropdown' >" . $gamesList[$i][0] . "<i class='fa fa-caret-down pull-right'></i></button>";
         //print "<button class='btn btn-default col-sm-1 ><span class='caret'></span></button>";
         print "<ul class='dropdown-menu btn-block' role='menu'>";
 
