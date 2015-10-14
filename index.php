@@ -6,9 +6,7 @@
 
 <!DOCTYPE html>
 <html>
-  <?php
-    include_once("head/headTags.php"); //Dark theme TODO: Download more theme.
-  ?>
+  <?php include_once("head/headTags.php"); // Get themes 'n' shit ?>
 <body>
 <div class="wrapper">
   <div class="jumbotron">

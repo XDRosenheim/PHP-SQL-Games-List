@@ -1,0 +1,15 @@
+<head>
+  <script language="JavaScript">
+    function enable_text(status)
+    {
+      status=!status;
+      document.f1.other_text.disabled = status;
+    }
+  </script>
+</head>
+<body>
+  <form name=f1 method=post>
+    <input type="checkbox" name=others onclick="enable_text(this.checked)" >Others
+    <input type=text name=other_text>
+  </form>
+</body>
