@@ -1,7 +1,23 @@
+/*
+    THIS FILE IS ONLY FOR STYLING!
+    NO COLOURS!
+*/
+
 /* BOOTSTRAP OVERRIDES */
 .row {
     margin-bottom: 2px;
 }
 .row:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
+}
+
+/* DON'T GET YOUR FEET WET! */
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+.footer .text-muted {
+    margin: 5px 0;
 }
