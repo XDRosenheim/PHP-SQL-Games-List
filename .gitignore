@@ -1,2 +1,3 @@
 # Using idea...
 .idea/*
+/sql/databaseStrings.php
