@@ -11,6 +11,6 @@
   <link rel="stylesheet" href="bootstrap/css/<?php print $_theme?>.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <script src="/js/jquery-2.1.4.min.js"></script>
-  <script src="/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
