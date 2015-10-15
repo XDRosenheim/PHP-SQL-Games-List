@@ -1,34 +1,13 @@
 <?php
-  include("includeMe/gameslist.php");
-  sort($gamesList);
-  $gamesListLength = count($gamesList);
-
-  //require_once("sql/databaseStrings.php");
-  //$conn = new mysqli($servername, $username, $password, $databasename);
-  $servername = "127.0.0.1";
-  $username = "root";
-  $password = "28998160";
-  $dbname = "php_site";
-
+  include_once("sql/databaseStrings.php");
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
   // Check connection
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
+  $sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit FROM gamesList";
 
-  $sql = "SELECT * FROM gamesList";
-  $result = $conn->query($sql);
-
-  if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-    }
-  } else {
-    echo "0 results";
-  }
-  $conn->close();
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,56 +23,59 @@
   </div>
   <div class="container">
     <?php
-      $newRow = true;
-      for ( $i = 0; $i < $gamesListLength; $i++ ) {
+    $newRow = true;
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+      $i = 0;
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
         if( $newRow ) {
           print "<div class='row'>";
           $newRow = false;
         }
 
         print "<div class='col-md-3'>";
-        print "<div class='btn-group btn-block'><button class='btn btn-default col-sm-11 dropdown-toggle' data-toggle='dropdown' >" . $gamesList[$i][0] . "<i class='fa fa-caret-down pull-right'></i></button>";
-        //print "<button class='btn btn-default col-sm-1 ><span class='caret'></span></button>";
+        print "<div class='btn-group btn-block'><button class='btn btn-default col-sm-11 dropdown-toggle' data-toggle='dropdown'>" . $row["appName"] . "<i class='fa fa-caret-down pull-right'></i></button>";
         print "<ul class='dropdown-menu btn-block' role='menu'>";
-
-
-        if ( $gamesList[$i][3] == true ) {
-          $wikiString = "Official wiki";
-        }
-        elseif ( $gamesList[$i][4] == "" ) {
-
-        } else {
-          $wikiString = "Fanmade wiki";
-        };
         print "<li class='dropdown-header'>Wiki</li>";
-        print "<li><a href='" . $gamesList[$i][4] . "'>" . $wikiString . "</a></li>";
 
+        if ( $row["wiki_link"] != "" ) {
+          print "<li><a href='" . $row["wiki_link"] . "'>Wiki</a></li>";
+        }
+        else {
+          print "<li class='disabled'><a>No wiki found...</a></li>";
+        };
 
         print "<li class='divider'></li><li class='dropdown-header'>Steam links</li>";
-        print "<li><a href='https://store.steampowered.com/app/" . $gamesList[$i][1] . "'>Store</a></li>";
-        print "<li><a href='https://steamcommunity.com/app/" . $gamesList[$i][1] . "'>Community</a></li>";
-        print "<li><a href='https://steamcommunity.com/app/" . $gamesList[$i][1] . "/screenshots'>Screenshots</a></li>";
-        if ( $gamesList[$i][2]) {
-          print "<li><a href='https://steamcommunity.com/workshop/browse?appid=" . $gamesList[$i][1] . "'>Workshop</a></li>";
+        print "<li><a href='https://store.steampowered.com/app/" . $row["steam_id"] . "'>Store</a></li>";
+        print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "'>Community</a></li>";
+        print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/screenshots'>Screenshots</a></li>";
+        if ( $row["steam_workshop"] ) {
+          print "<li><a href='https://steamcommunity.com/workshop/browse?appid=" . $row["steam_id"] . "'>Workshop</a></li>";
         } else {
           print "<li class='disabled'><a>Workshop</a></li>";
         }
-        print "<li><a href='https://steamcommunity.com/app" . $gamesList[$i][1] . "/guides'>Guides</a></li>";
-        print "<li><a href='https://steamcommunity.com/app" . $gamesList[$i][1] . "/allnews'>News</a></li>";
-        print "<li><a href='https://steamcommunity.com/app" . $gamesList[$i][1] . "/discussions'>Discussions</a></li>";
+        print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/guides'>Guides</a></li>";
+        print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/allnews'>News</a></li>";
+        print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/discussions'>Discussions</a></li>";
         print "<li class='divider'></li>";
         print "<li class='dropdown-header'>Reddits</li>";
-        if ( $gamesList[$i][5] != "") {
-          print "<li><a href='https://reddit.com/r/" . $gamesList[$i][5] . "/'>Subreddit</a></li>";
+        if ( $row["sub_reddit"] != "") {
+          print "<li><a href='https://reddit.com/r/" . $row["sub_reddit"] . "/'>Subreddit</a></li>";
         } else {
           print "<li class='disabled'><a>Subreddit</a></li>";
         }
         print "</ul></div></div>";
-        if( ($i+1) % 4 == 0 ) {
+        if( $row["id"] % 4 == 0 ) {
           print "</div>";
           $newRow = true;
         }
       }
+    } else {
+      echo "SQL Error, 0 (zero) entries found!";
+    }
+    $conn->close();
     ?>
   </div>
 </div>
