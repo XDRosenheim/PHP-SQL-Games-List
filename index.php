@@ -7,7 +7,6 @@
     die("Connection failed: " . $conn->connect_error);
   }
   $sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit FROM gamesList ORDER BY appName ASC";
-
 ?>
 <!DOCTYPE html>
 <html>
