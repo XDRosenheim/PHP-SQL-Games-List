@@ -6,7 +6,7 @@
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
-  $sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit FROM gamesList";
+  $sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit FROM gamesList ORDER BY appName ASC";
 
 ?>
 <!DOCTYPE html>
@@ -67,10 +67,11 @@
           print "<li class='disabled'><a>Subreddit</a></li>";
         }
         print "</ul></div></div>";
-        if( $row["id"] % 4 == 0 ) {
+        if( ($i % 4 == 0) && ($i > 4) ) {
           print "</div>";
           $newRow = true;
         }
+        $i++;
       }
     } else {
       echo "SQL Error, 0 (zero) entries found!";
