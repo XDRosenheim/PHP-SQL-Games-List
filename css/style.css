@@ -1,6 +1,6 @@
 /*
     THIS FILE IS ONLY FOR STYLING!
-    NO COLOURS!
+    NO COLOURS! USE A THEME INSTEAD.
 */
 
 /* BOOTSTRAP OVERRIDES */
@@ -9,6 +9,28 @@
 }
 .row:last-child {
     margin-bottom: 0;
+}
+
+/* SING-IN/UP */
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin
+input[type="email"] {
+    margin-bottom: -1px;
+    border-radius: 7px 7px 0 0;
+}
+.form-signin
+input[type="password"] {
+    margin-bottom: 7px;
+    border-radius: 0 0 7px 7px;
+}
+.form-signin button {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
 }
 
 /* DON'T GET YOUR FEET WET! */
@@ -21,3 +43,4 @@
 .footer .text-muted {
     margin: 5px 0;
 }
+
