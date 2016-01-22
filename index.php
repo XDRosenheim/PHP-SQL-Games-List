@@ -6,7 +6,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit FROM gamesList ORDER BY appName ASC";
+$sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit, steam_market FROM gamesList ORDER BY appName ASC";
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,6 +55,12 @@ $sql = "SELECT id, appName, steam_id, steam_workshop, wiki_link, sub_reddit FROM
                 print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/guides'>Guides</a></li>";
                 print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/allnews'>News</a></li>";
                 print "<li><a href='https://steamcommunity.com/app/" . $row["steam_id"] . "/discussions'>Discussions</a></li>";
+                if ( $row["steam_market"] ) {
+                    print "<li><a href='https://steamcommunity.com/market/search?appid=" . $row["steam_id"] . "'>Market</a></li>";
+                } else {
+                    print "<li class='disabled'><a>Market</a></li>";
+                }
+
                 print "<li class='divider'></li>";
                 print "<li class='dropdown-header'>Reddits</li>";
                 if ( $row["sub_reddit"] != "") {
